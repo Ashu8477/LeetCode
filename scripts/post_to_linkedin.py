@@ -45,7 +45,7 @@ headers = {
     "Authorization":
         f"Bearer {os.environ['LINKEDIN_ACCESS_TOKEN']}",
     "Content-Type": "application/json",
-    "LinkedIn-Version": "202506"
+    
 }
 
 response = requests.post(
