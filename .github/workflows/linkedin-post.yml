@@ -5,13 +5,64 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
-  linkedin:
-
+  detect:
     runs-on: ubuntu-latest
-
+    outputs:
+      folders: ${{ steps.detect.outputs.folders }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      - name: Detect changed problem folders
+        id: detect
+        run: |
+          set -e
+
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            if git rev-parse "$AFTER~1" >/dev/null 2>&1; then
+              RANGE="$AFTER~1..$AFTER"
+            else
+              RANGE="$AFTER"
+            fi
+          else
+            RANGE="$BEFORE..$AFTER"
+          fi
+
+          echo "Diff range: $RANGE"
+
+          FOLDERS=$(git diff --name-only $RANGE \
+            | grep -E '^[0-9]+' \
+            | cut -d'/' -f1 \
+            | sort -u || true)
+
+          if [ -z "$FOLDERS" ]; then
+            echo "folders=[]" >> "$GITHUB_OUTPUT"
+            echo "No problem folders changed in this push, nothing to post."
+            exit 0
+          fi
+
+          JSON=$(printf '%s\n' "$FOLDERS" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "folders=$JSON" >> "$GITHUB_OUTPUT"
+          echo "Detected folders: $JSON"
+
+  post:
+    needs: detect
+    if: needs.detect.outputs.folders != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        folder: ${{ fromJson(needs.detect.outputs.folders) }}
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -19,38 +70,37 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Find latest changed folder
-        id: folder
+      - name: Verify solution file exists
+        id: check
         run: |
-          FOLDER=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} \
-            | grep '^[0-9]' \
-            | cut -d'/' -f1 \
-            | uniq \
-            | head -n 1)
-      
-          echo "folder=$FOLDER" >> $GITHUB_OUTPUT
-      
-          echo "Detected folder: $FOLDER"
+          if ls "${{ matrix.folder }}"/*.py >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::No .py solution found in ${{ matrix.folder }}, skipping this folder."
+          fi
 
       - name: Generate images
-        run: |
-          python scripts/generate_images.py "${{ steps.folder.outputs.folder }}"
+        if: steps.check.outputs.exists == 'true'
+        run: python scripts/generate_images.py "${{ matrix.folder }}"
 
       - name: Upload images to Cloudinary
+        if: steps.check.outputs.exists == 'true'
         env:
           CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
           CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
           CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-        run: |
-          python scripts/upload_to_cloudinary.py "${{ steps.folder.outputs.folder }}"
+        run: python scripts/upload_to_cloudinary.py "${{ matrix.folder }}"
 
       - name: Post to LinkedIn
+        if: steps.check.outputs.exists == 'true'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
-        run: |
-          python scripts/post_to_linkedin.py "${{ steps.folder.outputs.folder }}"
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/post_to_linkedin.py "${{ matrix.folder }}"
