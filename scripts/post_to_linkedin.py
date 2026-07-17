@@ -6,9 +6,9 @@ from bs4 import BeautifulSoup
 
 folder = Path(sys.argv[1])
 
-readme = folder / "README.md"
+readme_file = folder / "README.md"
 
-html = readme.read_text(
+html = readme_file.read_text(
     encoding="utf-8",
     errors="ignore"
 )
@@ -25,39 +25,31 @@ caption = f"""
 
 💻 Solution attached below.
 
-#leetcode
-#python
-#dsa
-#coding
-#developer
-#github
+#leetcode #dsa #python #coding #developer #github
 """
 
 payload = {
     "author": f"urn:li:person:{os.environ['LINKEDIN_PERSON_ID']}",
-    "lifecycleState": "PUBLISHED",
-    "specificContent": {
-        "com.linkedin.ugc.ShareContent": {
-            "shareCommentary": {
-                "text": caption
-            },
-            "shareMediaCategory": "NONE"
-        }
+    "commentary": caption,
+    "visibility": "PUBLIC",
+    "distribution": {
+        "feedDistribution": "MAIN_FEED",
+        "targetEntities": [],
+        "thirdPartyDistributionChannels": []
     },
-    "visibility": {
-        "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"
-    }
+    "lifecycleState": "PUBLISHED",
+    "isReshareDisabledByAuthor": False
 }
 
 headers = {
     "Authorization":
         f"Bearer {os.environ['LINKEDIN_ACCESS_TOKEN']}",
-    "X-Restli-Protocol-Version": "2.0.0",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "LinkedIn-Version": "202506"
 }
 
 response = requests.post(
-    "https://api.linkedin.com/v2/ugcPosts",
+    "https://api.linkedin.com/rest/posts",
     json=payload,
     headers=headers
 )
