@@ -26,8 +26,14 @@ jobs:
       - name: Find latest folder
         id: folder
         run: |
-          FOLDER=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | head -n 1 | cut -d '/' -f1)
+
+          FOLDER=$(find . -maxdepth 1 -type d -name "[0-9]*" | sort | tail -n 1)
+      
+          FOLDER=$(basename "$FOLDER")
+      
           echo "folder=$FOLDER" >> $GITHUB_OUTPUT
+      
+          echo "Detected folder: $FOLDER"
 
       - name: Generate images
         run: |
