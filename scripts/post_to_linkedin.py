@@ -63,7 +63,11 @@ response = requests.post(
     headers=headers
 )
 
-print(response.status_code)
-print(response.json())
-print(response.text)
 response.raise_for_status()
+
+print(response.status_code)
+
+if response.text:
+    print(response.json())
+else:
+    print("LinkedIn post created successfully.")
