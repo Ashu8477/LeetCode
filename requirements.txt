@@ -1,4 +1,5 @@
-requests
-beautifulsoup4
-pillow
-cloudinary
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+pillow>=10.1.0
+cloudinary>=1.36.0
+pygments>=2.17.0
