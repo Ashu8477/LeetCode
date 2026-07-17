@@ -56,3 +56,4 @@ response = requests.post(
 
 print(response.status_code)
 print(response.text)
+response.raise_for_status()
