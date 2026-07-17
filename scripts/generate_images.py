@@ -1,31 +1,22 @@
-import sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
+import sys
 
 folder = Path(sys.argv[1])
 
-py_file = list(folder.glob("*.py"))[0]
+py_file = next(folder.glob("*.py"))
 
-code = py_file.read_text(encoding="utf-8")
+code = py_file.read_text(encoding="utf-8").splitlines()
 
-lines = code.splitlines()
-
-CHUNK = 45
-
-parts = [
-    lines[i:i + CHUNK]
-    for i in range(0, len(lines), CHUNK)
-]
+CHUNK_SIZE = 40
 
 font = ImageFont.load_default()
 
-for idx, block in enumerate(parts, start=1):
+for idx, start in enumerate(range(0, len(code), CHUNK_SIZE), start=1):
 
-    img = Image.new(
-        "RGB",
-        (1200, 900),
-        (30, 30, 46)
-    )
+    chunk = code[start:start + CHUNK_SIZE]
+
+    img = Image.new("RGB", (1400, 1000), (30, 30, 30))
 
     draw = ImageDraw.Draw(img)
 
@@ -38,17 +29,15 @@ for idx, block in enumerate(parts, start=1):
         font=font
     )
 
-    for line in block:
-
+    for line in chunk:
         draw.text(
             (40, y),
             line,
             fill=(220, 220, 220),
             font=font
         )
-
-        y += 20
+        y += 25
 
     img.save(folder / f"code_{idx}.png")
 
-print("Images generated")
+print("Done")
