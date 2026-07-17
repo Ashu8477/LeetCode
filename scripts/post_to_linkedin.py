@@ -3,6 +3,9 @@ import sys
 import requests
 from pathlib import Path
 from bs4 import BeautifulSoup
+from datetime import datetime
+import random
+
 
 folder = Path(sys.argv[1])
 
@@ -18,12 +21,16 @@ text = BeautifulSoup(
     "html.parser"
 ).get_text("\n")
 
-caption = f"""
-🚀 Solved a new LeetCode problem
+problem_name = folder.name
 
-{text[:2500]}
+caption = f"""
+🚀 Solved LeetCode Problem: {problem_name}
+
+{text[:1500]}
 
 💻 Solution attached below.
+⏰ {datetime.now().strftime("%d-%m-%Y %H:%M:%S")}
+🎲 {random.randint(100000, 999999)}
 
 #leetcode #dsa #python #coding #developer #github
 """
