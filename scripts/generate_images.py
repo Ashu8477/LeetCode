@@ -1,43 +1,178 @@
-from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
+"""Generate a cover slide + syntax-highlighted code slides for a solved
+LeetCode problem, ready to be posted on LinkedIn.
+
+Usage:
+    python generate_images.py <problem-folder>
+"""
 import sys
+from pathlib import Path
 
-folder = Path(sys.argv[1])
+from PIL import Image, ImageDraw, ImageFont
+from pygments import lex
+from pygments.lexers import PythonLexer
+from pygments.token import Token
 
-py_file = next(folder.glob("*.py"))
+from utils import parse_readme, get_difficulty_from_stats, difficulty_emoji
 
-code = py_file.read_text(encoding="utf-8").splitlines()
+WIDTH, HEIGHT = 1400, 1000
+BG_COLOR = (13, 17, 23)  # GitHub-dark-style background
+LINE_HEIGHT = 30
+PADDING = 50
+CHUNK_SIZE = 28  # source lines per code slide
 
-CHUNK_SIZE = 40
+TOKEN_COLORS = {
+    Token.Keyword: (255, 123, 114),
+    Token.Name.Function: (210, 168, 255),
+    Token.Name.Class: (255, 166, 87),
+    Token.String: (165, 214, 255),
+    Token.Number: (121, 192, 255),
+    Token.Comment: (139, 148, 158),
+    Token.Operator: (255, 123, 114),
+    Token.Punctuation: (201, 209, 217),
+}
+DEFAULT_COLOR = (230, 237, 243)
 
-font = ImageFont.load_default()
+FONT_CANDIDATES = [
+    "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+    "/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf",
+]
 
-for idx, start in enumerate(range(0, len(code), CHUNK_SIZE), start=1):
 
-    chunk = code[start:start + CHUNK_SIZE]
+def load_font(size: int, bold: bool = False) -> ImageFont.ImageFont:
+    """Try a few common Ubuntu-runner monospace fonts, falling back to
+    Pillow's built-in bitmap font so this never crashes if fonts are
+    missing on the runner image.
+    """
+    candidates = FONT_CANDIDATES
+    if bold:
+        candidates = [p for p in FONT_CANDIDATES if "Bold" in p] + FONT_CANDIDATES
 
-    img = Image.new("RGB", (1400, 1000), (30, 30, 30))
+    for path in candidates:
+        if Path(path).exists():
+            try:
+                return ImageFont.truetype(path, size)
+            except OSError:
+                continue
 
+    try:
+        return ImageFont.load_default(size=size)  # Pillow >= 10.1
+    except TypeError:
+        return ImageFont.load_default()
+
+
+def token_color(token_type) -> tuple:
+    while token_type is not None:
+        if token_type in TOKEN_COLORS:
+            return TOKEN_COLORS[token_type]
+        token_type = token_type.parent
+    return DEFAULT_COLOR
+
+
+def highlighted_lines(code: str):
+    """Return list[list[(text, color)]] -- one entry per source line."""
+    lines = [[]]
+    for token_type, value in lex(code, PythonLexer()):
+        color = token_color(token_type)
+        parts = value.split("\n")
+        for i, part in enumerate(parts):
+            if part:
+                lines[-1].append((part, color))
+            if i < len(parts) - 1:
+                lines.append([])
+    return lines
+
+
+def draw_cover_slide(folder: Path, meta: dict) -> Image.Image:
+    img = Image.new("RGB", (WIDTH, HEIGHT), BG_COLOR)
     draw = ImageDraw.Draw(img)
 
-    y = 40
+    title_font = load_font(46, bold=True)
+    meta_font = load_font(28)
+    body_font = load_font(24)
 
-    draw.text(
-        (40, 10),
-        py_file.name,
-        fill=(255, 255, 255),
-        font=font
-    )
+    emoji = difficulty_emoji(meta["difficulty"])
+    diff_label = meta["difficulty"].capitalize() if meta["difficulty"] != "unknown" else ""
 
-    for line in chunk:
-        draw.text(
-            (40, y),
-            line,
-            fill=(220, 220, 220),
-            font=font
-        )
-        y += 25
+    draw.text((PADDING, 90), "LeetCode Solved", fill=(88, 166, 255), font=meta_font)
+    draw.text((PADDING, 150), meta["title"], fill=(255, 255, 255), font=title_font)
+    if diff_label:
+        draw.text((PADDING, 230), f"{emoji} {diff_label}", fill=(230, 237, 243), font=meta_font)
 
-    img.save(folder / f"code_{idx}.png")
+    desc = " ".join(meta["description"].split())[:260]
+    if len(meta["description"]) > 260:
+        desc += "..."
 
-print("Done")
+    y = 320
+    max_chars_per_line = 78
+    for i in range(0, len(desc), max_chars_per_line):
+        draw.text((PADDING, y), desc[i:i + max_chars_per_line], fill=(201, 209, 217), font=body_font)
+        y += 34
+
+    draw.text((PADDING, HEIGHT - 70), folder.name, fill=(139, 148, 158), font=body_font)
+    return img
+
+
+def draw_code_slide(py_file_name: str, chunk_lines, start_line: int, part: int, total_parts: int) -> Image.Image:
+    img = Image.new("RGB", (WIDTH, HEIGHT), BG_COLOR)
+    draw = ImageDraw.Draw(img)
+
+    header_font = load_font(26, bold=True)
+    code_font = load_font(22)
+
+    draw.text((PADDING, 30), py_file_name, fill=(88, 166, 255), font=header_font)
+    draw.text((WIDTH - PADDING - 150, 30), f"part {part}/{total_parts}", fill=(139, 148, 158), font=header_font)
+    draw.line([(PADDING, 75), (WIDTH - PADDING, 75)], fill=(48, 54, 61), width=2)
+
+    y = 100
+    for idx, line_tokens in enumerate(chunk_lines):
+        line_no = start_line + idx + 1
+        draw.text((PADDING, y), f"{line_no:>3}", fill=(88, 96, 105), font=code_font)
+        x = PADDING + 70
+        for text, color in line_tokens:
+            draw.text((x, y), text, fill=color, font=code_font)
+            x += draw.textlength(text, font=code_font)
+        y += LINE_HEIGHT
+    return img
+
+
+def main(folder_arg: str) -> None:
+    folder = Path(folder_arg)
+    if not folder.is_dir():
+        print(f"::error::Folder '{folder}' does not exist.")
+        sys.exit(1)
+
+    py_files = sorted(folder.glob("*.py"))
+    if not py_files:
+        print(f"::error::No .py file found in {folder}")
+        sys.exit(1)
+    py_file = py_files[0]
+
+    meta = parse_readme(folder)
+    if meta["difficulty"] == "unknown":
+        fallback = get_difficulty_from_stats(Path("stats.json"), folder.name)
+        if fallback:
+            meta["difficulty"] = fallback
+
+    cover = draw_cover_slide(folder, meta)
+    cover.save(folder / "cover.png")
+
+    code = py_file.read_text(encoding="utf-8")
+    lines = highlighted_lines(code)
+
+    starts = list(range(0, len(lines), CHUNK_SIZE)) or [0]
+    chunks = [lines[s:s + CHUNK_SIZE] for s in starts]
+    total_parts = len(chunks)
+
+    for part, (start, chunk) in enumerate(zip(starts, chunks), start=1):
+        slide = draw_code_slide(py_file.name, chunk, start, part, total_parts)
+        slide.save(folder / f"code_{part}.png")
+
+    print(f"Generated 1 cover slide + {total_parts} code slide(s) for {folder.name}")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python generate_images.py <folder>")
+        sys.exit(1)
+    main(sys.argv[1])
