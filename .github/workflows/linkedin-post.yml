@@ -1,4 +1,4 @@
-name: Post LeetCode To LinkedIn
+name: LinkedIn Automation
 
 on:
   push:
@@ -7,9 +7,11 @@ on:
 
 jobs:
   linkedin:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -21,16 +23,23 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Find latest problem folder
+      - name: Find latest folder
         id: folder
         run: |
           FOLDER=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | head -n 1 | cut -d '/' -f1)
-
           echo "folder=$FOLDER" >> $GITHUB_OUTPUT
 
       - name: Generate images
         run: |
           python scripts/generate_images.py "${{ steps.folder.outputs.folder }}"
+
+      - name: Upload images to Cloudinary
+        env:
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+        run: |
+          python scripts/upload_to_cloudinary.py "${{ steps.folder.outputs.folder }}"
 
       - name: Post to LinkedIn
         env:
