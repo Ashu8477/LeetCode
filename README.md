@@ -26,6 +26,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0078-subsets](https://github.com/Ashu8477/LeetCode/tree/master/0078-subsets) |
 | [0079-word-search](https://github.com/Ashu8477/LeetCode/tree/master/0079-word-search) |
 | [0084-largest-rectangle-in-histogram](https://github.com/Ashu8477/LeetCode/tree/master/0084-largest-rectangle-in-histogram) |
+| [0153-find-minimum-in-rotated-sorted-array](https://github.com/Ashu8477/LeetCode/tree/master/0153-find-minimum-in-rotated-sorted-array) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Dynamic Programming
@@ -94,6 +95,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0004-median-of-two-sorted-arrays](https://github.com/Ashu8477/LeetCode/tree/master/0004-median-of-two-sorted-arrays) |
 | [0033-search-in-rotated-sorted-array](https://github.com/Ashu8477/LeetCode/tree/master/0033-search-in-rotated-sorted-array) |
 | [0074-search-a-2d-matrix](https://github.com/Ashu8477/LeetCode/tree/master/0074-search-a-2d-matrix) |
+| [0153-find-minimum-in-rotated-sorted-array](https://github.com/Ashu8477/LeetCode/tree/master/0153-find-minimum-in-rotated-sorted-array) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Divide and Conquer
 |  |
