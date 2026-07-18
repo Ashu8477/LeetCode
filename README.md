@@ -19,6 +19,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0049-group-anagrams](https://github.com/Ashu8477/LeetCode/tree/master/0049-group-anagrams) |
 | [0051-n-queens](https://github.com/Ashu8477/LeetCode/tree/master/0051-n-queens) |
 | [0054-spiral-matrix](https://github.com/Ashu8477/LeetCode/tree/master/0054-spiral-matrix) |
+| [0057-insert-interval](https://github.com/Ashu8477/LeetCode/tree/master/0057-insert-interval) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Dynamic Programming
