@@ -27,14 +27,18 @@ jobs:
         id: detect
         run: |
           FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'post.json' | head -n 1)
-      
+
+          echo "Changed file: $FILE"
+
           if [ -z "$FILE" ]; then
             echo "folders=[]" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-      
+
           FOLDER=$(dirname "$FILE")
-      
+
+          echo "Detected folder: $FOLDER"
+
           echo "folders=[\"$FOLDER\"]" >> "$GITHUB_OUTPUT"
 
   post:
@@ -44,12 +48,40 @@ jobs:
 
     strategy:
       fail-fast: false
+
       matrix:
         folder: ${{ fromJson(needs.detect.outputs.folders) }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+
+      - name: Wait for GitHub sync
+        run: |
+          echo "Waiting for GitHub sync..."
+          sleep 30
+
+      - name: Debug commit info
+        run: |
+          echo "Current commit:"
+          git rev-parse HEAD
+
+          echo "Triggered commit:"
+          echo "${{ github.sha }}"
+
+          echo "Folder:"
+          echo "${{ matrix.folder }}"
+
+      - name: Debug files
+        run: |
+          echo "Repository root:"
+          ls -la
+
+          echo "Folder contents:"
+          ls -la "${{ matrix.folder }}" || true
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -58,26 +90,32 @@ jobs:
           cache: "pip"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
 
       - name: Verify solution file exists
         id: check
         run: |
-          if ls "${{ matrix.folder }}"/*.py >/dev/null 2>&1; then
+          echo "Checking folder: ${{ matrix.folder }}"
+
+          PY_FILE=$(find "${{ matrix.folder }}" -maxdepth 1 -name "*.py" | head -n 1)
+
+          echo "Python file found: $PY_FILE"
+
+          if [ -n "$PY_FILE" ]; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
             echo "::warning::No .py solution found in ${{ matrix.folder }}"
           fi
-          
-      - name: Wait for GitHub sync
-        run: sleep 20
-        
+
       - name: Check LinkedIn flag
         id: linkedin_check
         if: steps.check.outputs.exists == 'true'
         run: |
           FILE="${{ matrix.folder }}/post.json"
+
+          echo "Reading: $FILE"
 
           if [ ! -f "$FILE" ]; then
             echo "linkedin=false" >> "$GITHUB_OUTPUT"
@@ -85,17 +123,18 @@ jobs:
             exit 0
           fi
 
+          cat "$FILE"
+
           VALUE=$(jq -r '.linkedin // false' "$FILE")
 
-          echo "linkedin=$VALUE" >> "$GITHUB_OUTPUT"
+          echo "LinkedIn value: $VALUE"
 
-          if [ "$VALUE" != "true" ]; then
-            echo "Skipping LinkedIn post"
-          fi
+          echo "linkedin=$VALUE" >> "$GITHUB_OUTPUT"
 
       - name: Generate images
         if: steps.check.outputs.exists == 'true' && steps.linkedin_check.outputs.linkedin == 'true'
         run: |
+          echo "Generating images..."
           python scripts/generate_images.py "${{ matrix.folder }}"
 
       - name: Upload images to Cloudinary
@@ -105,6 +144,7 @@ jobs:
           CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
           CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
         run: |
+          echo "Uploading images..."
           python scripts/upload_to_cloudinary.py "${{ matrix.folder }}"
 
       - name: Post to LinkedIn
@@ -114,4 +154,5 @@ jobs:
           LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
+          echo "Posting to LinkedIn..."
           python scripts/post_to_linkedin.py "${{ matrix.folder }}"
