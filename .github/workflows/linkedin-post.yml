@@ -69,7 +69,10 @@ jobs:
             echo "exists=false" >> "$GITHUB_OUTPUT"
             echo "::warning::No .py solution found in ${{ matrix.folder }}"
           fi
-
+          
+      - name: Wait for GitHub sync
+        run: sleep 20
+        
       - name: Check LinkedIn flag
         id: linkedin_check
         if: steps.check.outputs.exists == 'true'
