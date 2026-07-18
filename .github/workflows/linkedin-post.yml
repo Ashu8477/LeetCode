@@ -37,6 +37,8 @@ jobs:
             fi
           else
             RANGE="$BEFORE..$AFTER"
+            echo "Changed files:"
+            git diff --name-only $RANGE
           fi
 
           echo "Diff range: $RANGE"
