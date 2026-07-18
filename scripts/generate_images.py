@@ -14,11 +14,11 @@ from pygments.token import Token
 
 from utils import parse_readme, get_difficulty_from_stats, difficulty_emoji
 
-WIDTH, HEIGHT = 1400, 1000
-BG_COLOR = (13, 17, 23)  # GitHub-dark-style background
-LINE_HEIGHT = 30
+WIDTH, HEIGHT = 1600, 900
+BG_COLOR = (7, 10, 18) # GitHub-dark-style background
+LINE_HEIGHT = 38
 PADDING = 50
-CHUNK_SIZE = 28  # source lines per code slide
+CHUNK_SIZE = 18  # source lines per code slide
 
 TOKEN_COLORS = {
     Token.Keyword: (255, 123, 114),
@@ -91,19 +91,54 @@ def draw_cover_slide(folder: Path, meta: dict) -> Image.Image:
     meta_font = load_font(28)
     body_font = load_font(24)
 
+    difficulty_colors = {
+    "easy": (46, 204, 113),
+    "medium": (241, 196, 15),
+    "hard": (231, 76, 60),
+    }
+
+    diff_color = difficulty_colors.get(
+    meta["difficulty"],
+    (255, 255, 255),
+    )
+
     emoji = difficulty_emoji(meta["difficulty"])
     diff_label = meta["difficulty"].capitalize() if meta["difficulty"] != "unknown" else ""
 
-    draw.text((PADDING, 90), "LeetCode Solved", fill=(88, 166, 255), font=meta_font)
-    draw.text((PADDING, 150), meta["title"], fill=(255, 255, 255), font=title_font)
-    if diff_label:
-        draw.text((PADDING, 230), f"{emoji} {diff_label}", fill=(230, 237, 243), font=meta_font)
+    draw.text(
+    (PADDING, 60),
+    "🚀 LEETCODE SOLVED",
+    fill=(88, 166, 255),
+    font=meta_font,
+    )
 
+    draw.text(
+    (PADDING, 140),
+    meta["title"],
+    fill=(255, 255, 255),
+    font=title_font,
+    )
+
+    if diff_label:
+    draw.text(
+        (PADDING, 220),
+        f"{emoji} {diff_label}",
+        fill=diff_color,
+        font=meta_font,
+    )
+
+    draw.rounded_rectangle(
+    [(50, 300), (1550, 620)],
+    radius=20,
+    fill=(22, 27, 34),
+    outline=(48, 54, 61),
+    width=3,
+    )
     desc = " ".join(meta["description"].split())[:260]
     if len(meta["description"]) > 260:
         desc += "..."
 
-    y = 320
+    y = 340
     max_chars_per_line = 78
     for i in range(0, len(desc), max_chars_per_line):
         draw.text((PADDING, y), desc[i:i + max_chars_per_line], fill=(201, 209, 217), font=body_font)
@@ -118,13 +153,20 @@ def draw_code_slide(py_file_name: str, chunk_lines, start_line: int, part: int, 
     draw = ImageDraw.Draw(img)
 
     header_font = load_font(26, bold=True)
-    code_font = load_font(22)
+    code_font = load_font(28)
 
     draw.text((PADDING, 30), py_file_name, fill=(88, 166, 255), font=header_font)
     draw.text((WIDTH - PADDING - 150, 30), f"part {part}/{total_parts}", fill=(139, 148, 158), font=header_font)
     draw.line([(PADDING, 75), (WIDTH - PADDING, 75)], fill=(48, 54, 61), width=2)
+    draw.rounded_rectangle(
+    [(35, 90), (1565, 850)],
+    radius=18,
+    fill=(22, 27, 34),
+    outline=(48, 54, 61),
+    width=2,
+    )
 
-    y = 100
+    y = 120
     for idx, line_tokens in enumerate(chunk_lines):
         line_no = start_line + idx + 1
         draw.text((PADDING, y), f"{line_no:>3}", fill=(88, 96, 105), font=code_font)
