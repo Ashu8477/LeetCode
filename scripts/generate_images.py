@@ -95,38 +95,41 @@ def draw_cover_slide(folder: Path, meta: dict) -> Image.Image:
     "easy": (46, 204, 113),
     "medium": (241, 196, 15),
     "hard": (231, 76, 60),
-    }
+}
 
     diff_color = difficulty_colors.get(
-    meta["difficulty"],
-    (255, 255, 255),
+        meta["difficulty"],
+        (255, 255, 255),
     )
 
     emoji = difficulty_emoji(meta["difficulty"])
-    diff_label = meta["difficulty"].capitalize() if meta["difficulty"] != "unknown" else ""
-
-    draw.text(
-    (PADDING, 60),
-    "🚀 LEETCODE SOLVED",
-    fill=(88, 166, 255),
-    font=meta_font,
+    diff_label = (
+        meta["difficulty"].capitalize()
+        if meta["difficulty"] != "unknown"
+        else ""
     )
 
     draw.text(
-    (PADDING, 140),
-    meta["title"],
-    fill=(255, 255, 255),
-    font=title_font,
-    )
-
-    if diff_label:
-    draw.text(
-        (PADDING, 220),
-        f"{emoji} {diff_label}",
-        fill=diff_color,
+        (PADDING, 60),
+        "🚀 LEETCODE SOLVED",
+        fill=(88, 166, 255),
         font=meta_font,
     )
 
+    draw.text(
+        (PADDING, 140),
+        meta["title"],
+        fill=(255, 255, 255),
+        font=title_font,
+    )
+
+    if diff_label:
+        draw.text(
+            (PADDING, 220),
+            f"{emoji} {diff_label}",
+            fill=diff_color,
+            font=meta_font,
+        )
     draw.rounded_rectangle(
     [(50, 300), (1550, 620)],
     radius=20,
