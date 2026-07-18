@@ -27,6 +27,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0079-word-search](https://github.com/Ashu8477/LeetCode/tree/master/0079-word-search) |
 | [0084-largest-rectangle-in-histogram](https://github.com/Ashu8477/LeetCode/tree/master/0084-largest-rectangle-in-histogram) |
 | [0136-single-number](https://github.com/Ashu8477/LeetCode/tree/master/0136-single-number) |
+| [0152-maximum-product-subarray](https://github.com/Ashu8477/LeetCode/tree/master/0152-maximum-product-subarray) |
 | [0153-find-minimum-in-rotated-sorted-array](https://github.com/Ashu8477/LeetCode/tree/master/0153-find-minimum-in-rotated-sorted-array) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
@@ -40,6 +41,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0062-unique-paths](https://github.com/Ashu8477/LeetCode/tree/master/0062-unique-paths) |
 | [0070-climbing-stairs](https://github.com/Ashu8477/LeetCode/tree/master/0070-climbing-stairs) |
 | [0072-edit-distance](https://github.com/Ashu8477/LeetCode/tree/master/0072-edit-distance) |
+| [0152-maximum-product-subarray](https://github.com/Ashu8477/LeetCode/tree/master/0152-maximum-product-subarray) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Math
