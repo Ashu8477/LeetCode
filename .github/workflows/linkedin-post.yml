@@ -1,75 +1,133 @@
-post:
-  needs: detect
-  if: needs.detect.outputs.folders != '[]'
-  runs-on: ubuntu-latest
+name: LinkedIn Automation
 
-  strategy:
-    fail-fast: false
-    matrix:
-      folder: ${{ fromJson(needs.detect.outputs.folders) }}
+on:
+  push:
+    branches:
+      - main
 
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+permissions:
+  contents: read
 
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.12"
-        cache: "pip"
+jobs:
+  detect:
+    runs-on: ubuntu-latest
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+    outputs:
+      folders: ${{ steps.detect.outputs.folders }}
 
-    - name: Verify solution file exists
-      id: check
-      run: |
-        if ls "${{ matrix.folder }}"/*.py >/dev/null 2>&1; then
-          echo "exists=true" >> "$GITHUB_OUTPUT"
-        else
-          echo "exists=false" >> "$GITHUB_OUTPUT"
-          echo "::warning::No .py solution found in ${{ matrix.folder }}, skipping this folder."
-        fi
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Check LinkedIn flag
-      id: linkedin_check
-      if: steps.check.outputs.exists == 'true'
-      run: |
-        FILE="${{ matrix.folder }}/post.json"
+      - name: Detect changed problem folders
+        id: detect
+        run: |
+          set -e
 
-        if [ ! -f "$FILE" ]; then
-          echo "linkedin=false" >> "$GITHUB_OUTPUT"
-          echo "::warning::post.json not found."
-          exit 0
-        fi
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
 
-        VALUE=$(jq -r '.linkedin // false' "$FILE")
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            if git rev-parse "$AFTER~1" >/dev/null 2>&1; then
+              RANGE="$AFTER~1..$AFTER"
+            else
+              RANGE="$AFTER"
+            fi
+          else
+            RANGE="$BEFORE..$AFTER"
+          fi
 
-        echo "linkedin=$VALUE" >> "$GITHUB_OUTPUT"
+          echo "Diff range: $RANGE"
 
-        if [ "$VALUE" != "true" ]; then
-          echo "Skipping LinkedIn post"
-        fi
+          FOLDERS=$(git diff --name-only $RANGE \
+            | grep -E '^[0-9]+' \
+            | cut -d'/' -f1 \
+            | sort -u || true)
 
-    - name: Generate images
-      if: steps.check.outputs.exists == 'true' && steps.linkedin_check.outputs.linkedin == 'true'
-      run: |
-        python scripts/generate_images.py "${{ matrix.folder }}"
+          if [ -z "$FOLDERS" ]; then
+            echo "folders=[]" >> "$GITHUB_OUTPUT"
+            echo "No problem folders changed in this push."
+            exit 0
+          fi
 
-    - name: Upload images to Cloudinary
-      if: steps.check.outputs.exists == 'true' && steps.linkedin_check.outputs.linkedin == 'true'
-      env:
-        CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-        CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-        CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-      run: |
-        python scripts/upload_to_cloudinary.py "${{ matrix.folder }}"
+          JSON=$(printf '%s\n' "$FOLDERS" | jq -R -s -c 'split("\n") | map(select(length > 0))')
 
-    - name: Post to LinkedIn
-      if: steps.check.outputs.exists == 'true' && steps.linkedin_check.outputs.linkedin == 'true'
-      env:
-        LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
-        LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
-        GITHUB_REPOSITORY: ${{ github.repository }}
-      run: |
-        python scripts/post_to_linkedin.py "${{ matrix.folder }}"
+          echo "folders=$JSON" >> "$GITHUB_OUTPUT"
+
+  post:
+    needs: detect
+    if: needs.detect.outputs.folders != '[]'
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        folder: ${{ fromJson(needs.detect.outputs.folders) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Verify solution file exists
+        id: check
+        run: |
+          if ls "${{ matrix.folder }}"/*.py >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::No .py solution found in ${{ matrix.folder }}"
+          fi
+
+      - name: Check LinkedIn flag
+        id: linkedin_check
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          FILE="${{ matrix.folder }}/post.json"
+
+          if [ ! -f "$FILE" ]; then
+            echo "linkedin=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::post.json not found"
+            exit 0
+          fi
+
+          VALUE=$(jq -r '.linkedin // false' "$FILE")
+
+          echo "linkedin=$VALUE" >> "$GITHUB_OUTPUT"
+
+          if [ "$VALUE" != "true" ]; then
+            echo "Skipping LinkedIn post"
+          fi
+
+      - name: Generate images
+        if: steps.check.outputs.exists == 'true' && steps.linkedin_check.outputs.linkedin == 'true'
+        run: |
+          python scripts/generate_images.py "${{ matrix.folder }}"
+
+      - name: Upload images to Cloudinary
+        if: steps.check.outputs.exists == 'true' && steps.linkedin_check.outputs.linkedin == 'true'
+        env:
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+        run: |
+          python scripts/upload_to_cloudinary.py "${{ matrix.folder }}"
+
+      - name: Post to LinkedIn
+        if: steps.check.outputs.exists == 'true' && steps.linkedin_check.outputs.linkedin == 'true'
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python scripts/post_to_linkedin.py "${{ matrix.folder }}"
