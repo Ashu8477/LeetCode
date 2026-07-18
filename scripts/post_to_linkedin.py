@@ -75,22 +75,55 @@ def upload_image(image_path: Path, author_urn: str) -> str:
 
 def build_caption(folder: Path, meta: dict) -> str:
     repo = os.environ.get("GITHUB_REPOSITORY", "")
-    repo_url = f"https://github.com/{repo}/tree/main/{folder.name}" if repo else ""
+
+    repo_url = (
+        f"https://github.com/{repo}/tree/main/{folder.name}"
+        if repo
+        else ""
+    )
+
     emoji = difficulty_emoji(meta["difficulty"])
-    diff_label = meta["difficulty"].capitalize() if meta["difficulty"] != "unknown" else ""
-    description = " ".join(meta["description"].split())[:600]
 
-    lines = [f"🚀 Solved: {meta['title']}"]
-    if diff_label:
-        lines.append(f"{emoji} Difficulty: {diff_label}")
-    if meta["url"]:
-        lines.append(f"🔗 Problem: {meta['url']}")
-    lines += ["", description, ""]
-    if repo_url:
-        lines.append(f"💻 Full solution: {repo_url}")
-    lines += ["", "#leetcode #dsa #python #coding #softwareengineering #100daysofcode"]
+    diff_label = (
+        meta["difficulty"].capitalize()
+        if meta["difficulty"] != "unknown"
+        else "Unknown"
+    )
 
-    return "\n".join(lines)[:CAPTION_LIMIT]
+    title = meta["title"]
+
+    description = " ".join(meta["description"].split())
+
+    # Sirf chhota preview rakho
+    short_desc = description[:180] + "..." if len(description) > 180 else description
+
+    caption = f"""
+🚀 LeetCode Challenge Solved
+
+📌 Problem: {title}
+
+{emoji} Difficulty: {diff_label}
+
+💡 Problem Preview:
+
+{short_desc}
+
+⚡ Optimized solution implemented.
+
+💻 Full Solution:
+
+{repo_url}
+
+#LeetCode
+#Python
+#DataStructures
+#Algorithms
+#CodingInterview
+#SoftwareEngineering
+#100DaysOfCode
+"""
+
+    return caption.strip()[:CAPTION_LIMIT]
 
 
 def build_content(image_urns: List[str]) -> Optional[dict]:
