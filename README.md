@@ -17,6 +17,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0046-permutations](https://github.com/Ashu8477/LeetCode/tree/master/0046-permutations) |
 | [0048-rotate-image](https://github.com/Ashu8477/LeetCode/tree/master/0048-rotate-image) |
 | [0049-group-anagrams](https://github.com/Ashu8477/LeetCode/tree/master/0049-group-anagrams) |
+| [0051-n-queens](https://github.com/Ashu8477/LeetCode/tree/master/0051-n-queens) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Dynamic Programming
@@ -157,6 +158,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0039-combination-sum](https://github.com/Ashu8477/LeetCode/tree/master/0039-combination-sum) |
 | [0040-combination-sum-ii](https://github.com/Ashu8477/LeetCode/tree/master/0040-combination-sum-ii) |
 | [0046-permutations](https://github.com/Ashu8477/LeetCode/tree/master/0046-permutations) |
+| [0051-n-queens](https://github.com/Ashu8477/LeetCode/tree/master/0051-n-queens) |
 ## Heap (Priority Queue)
 |  |
 | ------- |
