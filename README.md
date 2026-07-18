@@ -20,6 +20,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0051-n-queens](https://github.com/Ashu8477/LeetCode/tree/master/0051-n-queens) |
 | [0054-spiral-matrix](https://github.com/Ashu8477/LeetCode/tree/master/0054-spiral-matrix) |
 | [0057-insert-interval](https://github.com/Ashu8477/LeetCode/tree/master/0057-insert-interval) |
+| [0066-plus-one](https://github.com/Ashu8477/LeetCode/tree/master/0066-plus-one) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Dynamic Programming
@@ -43,6 +44,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0048-rotate-image](https://github.com/Ashu8477/LeetCode/tree/master/0048-rotate-image) |
 | [0050-powx-n](https://github.com/Ashu8477/LeetCode/tree/master/0050-powx-n) |
 | [0062-unique-paths](https://github.com/Ashu8477/LeetCode/tree/master/0062-unique-paths) |
+| [0066-plus-one](https://github.com/Ashu8477/LeetCode/tree/master/0066-plus-one) |
 | [0070-climbing-stairs](https://github.com/Ashu8477/LeetCode/tree/master/0070-climbing-stairs) |
 ## String
 |  |
