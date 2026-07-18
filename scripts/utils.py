@@ -87,7 +87,6 @@ def parse_readme(folder: Path) -> dict:
     keywords = [
         "approach",
         "intuition",
-        "solution",
         "algorithm",
         "idea",
     ]
