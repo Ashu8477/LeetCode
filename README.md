@@ -30,6 +30,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0002-add-two-numbers](https://github.com/Ashu8477/LeetCode/tree/master/0002-add-two-numbers) |
 | [0007-reverse-integer](https://github.com/Ashu8477/LeetCode/tree/master/0007-reverse-integer) |
+| [0043-multiply-strings](https://github.com/Ashu8477/LeetCode/tree/master/0043-multiply-strings) |
 | [0070-climbing-stairs](https://github.com/Ashu8477/LeetCode/tree/master/0070-climbing-stairs) |
 ## String
 |  |
@@ -39,6 +40,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0008-string-to-integer-atoi](https://github.com/Ashu8477/LeetCode/tree/master/0008-string-to-integer-atoi) |
 | [0017-letter-combinations-of-a-phone-number](https://github.com/Ashu8477/LeetCode/tree/master/0017-letter-combinations-of-a-phone-number) |
 | [0022-generate-parentheses](https://github.com/Ashu8477/LeetCode/tree/master/0022-generate-parentheses) |
+| [0043-multiply-strings](https://github.com/Ashu8477/LeetCode/tree/master/0043-multiply-strings) |
 | [0072-edit-distance](https://github.com/Ashu8477/LeetCode/tree/master/0072-edit-distance) |
 ## Hash Table
 |  |
@@ -158,4 +160,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0042-trapping-rain-water](https://github.com/Ashu8477/LeetCode/tree/master/0042-trapping-rain-water) |
+## Simulation
+|  |
+| ------- |
+| [0043-multiply-strings](https://github.com/Ashu8477/LeetCode/tree/master/0043-multiply-strings) |
 <!---LeetCode Topics End-->
