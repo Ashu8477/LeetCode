@@ -11,6 +11,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0015-3sum](https://github.com/Ashu8477/LeetCode/tree/master/0015-3sum) |
 | [0033-search-in-rotated-sorted-array](https://github.com/Ashu8477/LeetCode/tree/master/0033-search-in-rotated-sorted-array) |
 | [0039-combination-sum](https://github.com/Ashu8477/LeetCode/tree/master/0039-combination-sum) |
+| [0040-combination-sum-ii](https://github.com/Ashu8477/LeetCode/tree/master/0040-combination-sum-ii) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Dynamic Programming
@@ -137,6 +138,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0017-letter-combinations-of-a-phone-number](https://github.com/Ashu8477/LeetCode/tree/master/0017-letter-combinations-of-a-phone-number) |
 | [0022-generate-parentheses](https://github.com/Ashu8477/LeetCode/tree/master/0022-generate-parentheses) |
 | [0039-combination-sum](https://github.com/Ashu8477/LeetCode/tree/master/0039-combination-sum) |
+| [0040-combination-sum-ii](https://github.com/Ashu8477/LeetCode/tree/master/0040-combination-sum-ii) |
 ## Heap (Priority Queue)
 |  |
 | ------- |
