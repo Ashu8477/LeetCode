@@ -87,15 +87,15 @@ def draw_cover_slide(folder: Path, meta: dict) -> Image.Image:
     img = Image.new("RGB", (WIDTH, HEIGHT), BG_COLOR)
     draw = ImageDraw.Draw(img)
 
-    title_font = load_font(46, bold=True)
+    title_font = load_font(42, bold=True)
     meta_font = load_font(28)
     body_font = load_font(24)
 
     difficulty_colors = {
-    "easy": (46, 204, 113),
-    "medium": (241, 196, 15),
-    "hard": (231, 76, 60),
-}
+        "easy": (46, 204, 113),
+        "medium": (241, 196, 15),
+        "hard": (231, 76, 60),
+    }
 
     diff_color = difficulty_colors.get(
         meta["difficulty"],
@@ -103,6 +103,7 @@ def draw_cover_slide(folder: Path, meta: dict) -> Image.Image:
     )
 
     emoji = difficulty_emoji(meta["difficulty"])
+
     diff_label = (
         meta["difficulty"].capitalize()
         if meta["difficulty"] != "unknown"
@@ -130,24 +131,60 @@ def draw_cover_slide(folder: Path, meta: dict) -> Image.Image:
             fill=diff_color,
             font=meta_font,
         )
+
     draw.rounded_rectangle(
-    [(50, 300), (1550, 620)],
-    radius=20,
-    fill=(22, 27, 34),
-    outline=(48, 54, 61),
-    width=3,
+        [(50, 300), (1550, 650)],
+        radius=20,
+        fill=(22, 27, 34),
+        outline=(48, 54, 61),
+        width=3,
     )
-    desc = " ".join(meta["description"].split())[:260]
-    if len(meta["description"]) > 260:
-        desc += "..."
 
-    y = 340
-    max_chars_per_line = 78
-    for i in range(0, len(desc), max_chars_per_line):
-        draw.text((PADDING, y), desc[i:i + max_chars_per_line], fill=(201, 209, 217), font=body_font)
-        y += 34
+    approach = meta.get(
+        "approach",
+        "Optimized solution using an efficient algorithm."
+    )
 
-    draw.text((PADDING, HEIGHT - 70), folder.name, fill=(139, 148, 158), font=body_font)
+    complexities = [
+        "⚡ Time Complexity: O(n)",
+        "📦 Space Complexity: O(1)",
+    ]
+
+    draw.text(
+        (90, 340),
+        "🧠 Approach",
+        fill=(88, 166, 255),
+        font=meta_font,
+    )
+
+    draw.text(
+        (90, 410),
+        approach,
+        fill=(230, 237, 243),
+        font=body_font,
+    )
+
+    draw.text(
+        (90, 510),
+        complexities[0],
+        fill=(241, 196, 15),
+        font=body_font,
+    )
+
+    draw.text(
+        (90, 560),
+        complexities[1],
+        fill=(46, 204, 113),
+        font=body_font,
+    )
+
+    draw.text(
+        (PADDING, HEIGHT - 70),
+        "github.com/Ashu8477",
+        fill=(139, 148, 158),
+        font=body_font,
+    )
+
     return img
 
 
@@ -162,11 +199,11 @@ def draw_code_slide(py_file_name: str, chunk_lines, start_line: int, part: int, 
     draw.text((WIDTH - PADDING - 150, 30), f"part {part}/{total_parts}", fill=(139, 148, 158), font=header_font)
     draw.line([(PADDING, 75), (WIDTH - PADDING, 75)], fill=(48, 54, 61), width=2)
     draw.rounded_rectangle(
-    [(35, 90), (1565, 850)],
-    radius=18,
-    fill=(22, 27, 34),
-    outline=(48, 54, 61),
-    width=2,
+        [(35, 90), (1565, 850)],
+        radius=18,
+        fill=(22, 27, 34),
+        outline=(48, 54, 61),
+        width=2,
     )
 
     y = 120
