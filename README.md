@@ -29,6 +29,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0022-generate-parentheses](https://github.com/Ashu8477/LeetCode/tree/master/0022-generate-parentheses) |
 | [0042-trapping-rain-water](https://github.com/Ashu8477/LeetCode/tree/master/0042-trapping-rain-water) |
 | [0045-jump-game-ii](https://github.com/Ashu8477/LeetCode/tree/master/0045-jump-game-ii) |
+| [0062-unique-paths](https://github.com/Ashu8477/LeetCode/tree/master/0062-unique-paths) |
 | [0070-climbing-stairs](https://github.com/Ashu8477/LeetCode/tree/master/0070-climbing-stairs) |
 | [0072-edit-distance](https://github.com/Ashu8477/LeetCode/tree/master/0072-edit-distance) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
@@ -41,6 +42,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0043-multiply-strings](https://github.com/Ashu8477/LeetCode/tree/master/0043-multiply-strings) |
 | [0048-rotate-image](https://github.com/Ashu8477/LeetCode/tree/master/0048-rotate-image) |
 | [0050-powx-n](https://github.com/Ashu8477/LeetCode/tree/master/0050-powx-n) |
+| [0062-unique-paths](https://github.com/Ashu8477/LeetCode/tree/master/0062-unique-paths) |
 | [0070-climbing-stairs](https://github.com/Ashu8477/LeetCode/tree/master/0070-climbing-stairs) |
 ## String
 |  |
@@ -187,4 +189,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0048-rotate-image](https://github.com/Ashu8477/LeetCode/tree/master/0048-rotate-image) |
 | [0054-spiral-matrix](https://github.com/Ashu8477/LeetCode/tree/master/0054-spiral-matrix) |
+## Combinatorics
+|  |
+| ------- |
+| [0062-unique-paths](https://github.com/Ashu8477/LeetCode/tree/master/0062-unique-paths) |
 <!---LeetCode Topics End-->
