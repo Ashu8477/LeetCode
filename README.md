@@ -16,6 +16,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0045-jump-game-ii](https://github.com/Ashu8477/LeetCode/tree/master/0045-jump-game-ii) |
 | [0046-permutations](https://github.com/Ashu8477/LeetCode/tree/master/0046-permutations) |
 | [0048-rotate-image](https://github.com/Ashu8477/LeetCode/tree/master/0048-rotate-image) |
+| [0049-group-anagrams](https://github.com/Ashu8477/LeetCode/tree/master/0049-group-anagrams) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Dynamic Programming
@@ -46,6 +47,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0017-letter-combinations-of-a-phone-number](https://github.com/Ashu8477/LeetCode/tree/master/0017-letter-combinations-of-a-phone-number) |
 | [0022-generate-parentheses](https://github.com/Ashu8477/LeetCode/tree/master/0022-generate-parentheses) |
 | [0043-multiply-strings](https://github.com/Ashu8477/LeetCode/tree/master/0043-multiply-strings) |
+| [0049-group-anagrams](https://github.com/Ashu8477/LeetCode/tree/master/0049-group-anagrams) |
 | [0072-edit-distance](https://github.com/Ashu8477/LeetCode/tree/master/0072-edit-distance) |
 ## Hash Table
 |  |
@@ -53,6 +55,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0001-two-sum](https://github.com/Ashu8477/LeetCode/tree/master/0001-two-sum) |
 | [0003-longest-substring-without-repeating-characters](https://github.com/Ashu8477/LeetCode/tree/master/0003-longest-substring-without-repeating-characters) |
 | [0017-letter-combinations-of-a-phone-number](https://github.com/Ashu8477/LeetCode/tree/master/0017-letter-combinations-of-a-phone-number) |
+| [0049-group-anagrams](https://github.com/Ashu8477/LeetCode/tree/master/0049-group-anagrams) |
 ## Linked List
 |  |
 | ------- |
@@ -102,6 +105,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0015-3sum](https://github.com/Ashu8477/LeetCode/tree/master/0015-3sum) |
+| [0049-group-anagrams](https://github.com/Ashu8477/LeetCode/tree/master/0049-group-anagrams) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Tree
 |  |
