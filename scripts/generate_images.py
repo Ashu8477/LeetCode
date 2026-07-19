@@ -242,7 +242,7 @@ def main(folder_arg: str) -> None:
     code = py_file.read_text(encoding="utf-8")
     lines = highlighted_lines(code)
     while lines and not lines[-1]:
-    lines.pop()
+        lines.pop()
 
     starts = list(range(0, len(lines), CHUNK_SIZE)) or [0]
     chunks = [lines[s:s + CHUNK_SIZE] for s in starts]
