@@ -5,6 +5,8 @@ on:
     branches:
       - main
     paths:
+      - '**/*.py'
+      - '**/README.md'
       - '**/post.json'
 
 permissions:
@@ -26,7 +28,9 @@ jobs:
       - name: Detect changed problem folders
         id: detect
         run: |
-          FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'post.json' | head -n 1)
+          FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
+          | grep -E '\.py$|README\.md$|post\.json$' \
+          | head -n 1)
 
           echo "Changed file: $FILE"
 
