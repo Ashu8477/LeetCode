@@ -14,7 +14,7 @@ import sys
 import time
 from pathlib import Path
 from typing import List, Optional
-
+import re
 import requests
 
 from utils import parse_readme, get_difficulty_from_stats, difficulty_emoji
@@ -72,7 +72,31 @@ def upload_image(image_path: Path, author_urn: str) -> str:
     put_resp.raise_for_status()
     return image_urn
 
+def format_problem_preview(text):
+    lines = text.splitlines()
 
+    cleaned = []
+
+    for line in lines:
+        line = line.strip()
+
+        if not line:
+            cleaned.append("")
+            continue
+
+        if (
+            line.startswith("Example")
+            or line.startswith("Input:")
+            or line.startswith("Output:")
+            or line.startswith("Constraints:")
+        ):
+            cleaned.append("")
+            cleaned.append(line)
+        else:
+            cleaned.append(line)
+
+    return "\n".join(cleaned)
+    
 def build_caption(folder: Path, meta: dict) -> str:
     repo = os.environ.get("GITHUB_REPOSITORY", "")
 
@@ -92,10 +116,7 @@ def build_caption(folder: Path, meta: dict) -> str:
 
     title = meta["title"]
 
-    description = " ".join(meta["description"].split())
-
-    # Sirf chhota preview rakho
-    short_desc = description[:180] + "..." if len(description) > 180 else description
+    preview = format_problem_preview(meta["description"])
 
     caption = f"""
 🚀 LeetCode Challenge Solved
@@ -106,7 +127,7 @@ def build_caption(folder: Path, meta: dict) -> str:
 
 💡 Problem Preview:
 
-{short_desc}
+{preview}
 
 ⚡ Optimized solution implemented.
 
