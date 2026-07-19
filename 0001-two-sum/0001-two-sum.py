@@ -5,6 +5,7 @@ class Solution:
             value=target-nums[i]
             if value in dic:
                 return dic[value],i
+                
             else:
                 dic[nums[i]]=i
        
