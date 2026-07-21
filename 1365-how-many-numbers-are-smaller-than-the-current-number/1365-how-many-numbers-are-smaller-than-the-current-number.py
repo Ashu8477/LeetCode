@@ -1,18 +1,17 @@
 class Solution:
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
-        count=0
-        new=[]
-        i,j=0,0
-        n = len(nums)
 
-        for i in range(n):
-            for j in range(n):
-                if nums[i]>nums[j]:
-                    count+=1
-            new.append(count)
-            count=0
-        return new
-
+        freq=[0]*101
+        for num in nums:
+            freq[num]+=1
         
-
+        for i in range(1,101):
+            freq[i]+=freq[i-1]
         
+        ans=[]
+        for num in nums:
+            if num==0:
+                ans.append(0)
+            else:
+                ans.append(freq[num-1])
+        return ans
