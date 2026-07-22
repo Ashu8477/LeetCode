@@ -83,7 +83,5 @@ class Solution:
                 val3 = query_max(i + 1, j - 2)
 
                 best_gain = max(val1, val2, val3)
-
             ans.append(total_ones + best_gain)
-
         return ans
