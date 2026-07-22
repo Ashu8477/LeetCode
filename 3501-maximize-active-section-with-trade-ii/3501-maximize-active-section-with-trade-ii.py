@@ -1,7 +1,5 @@
 from typing import List
 from bisect import bisect_left, bisect_right
-
-
 class Solution:
     def maxActiveSectionsAfterTrade(self, s: str, queries: List[List[int]]) -> List[int]:
 
