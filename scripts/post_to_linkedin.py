@@ -20,7 +20,7 @@ import requests
 from utils import parse_readme, get_difficulty_from_stats, difficulty_emoji
 
 API_BASE = "https://api.linkedin.com/rest"
-LINKEDIN_VERSION = "202507"
+LINKEDIN_VERSION = "202607"
 MAX_RETRIES = 3
 CAPTION_LIMIT = 2900  # stay safely under LinkedIn's ~3000 char commentary limit
 
