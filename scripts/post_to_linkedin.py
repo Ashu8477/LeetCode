@@ -50,12 +50,17 @@ def initialize_upload(author_urn: str) -> dict:
         "POST",
         f"{API_BASE}/images?action=initializeUpload",
         headers={**auth_headers(), "Content-Type": "application/json"},
-        json={"initializeUploadRequest": {"owner": author_urn}},
+        json={
+            "initializeUploadRequest": {
+                "owner": author_urn
+            }
+        },
     )
 
+    print("========== DEBUG ==========")
     print("Status:", resp.status_code)
-    print("Headers:", resp.headers)
-    print("Body:", resp.text)
+    print("Response:", resp.text)
+    print("===========================")
 
     resp.raise_for_status()
     return resp.json()["value"]
