@@ -52,6 +52,11 @@ def initialize_upload(author_urn: str) -> dict:
         headers={**auth_headers(), "Content-Type": "application/json"},
         json={"initializeUploadRequest": {"owner": author_urn}},
     )
+
+    print("Status:", resp.status_code)
+    print("Headers:", resp.headers)
+    print("Body:", resp.text)
+
     resp.raise_for_status()
     return resp.json()["value"]
 
