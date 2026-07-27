@@ -31,6 +31,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0084-largest-rectangle-in-histogram](https://github.com/Ashu8477/LeetCode/tree/master/0084-largest-rectangle-in-histogram) |
 | [0088-merge-sorted-array](https://github.com/Ashu8477/LeetCode/tree/master/0088-merge-sorted-array) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Ashu8477/LeetCode/tree/master/0121-best-time-to-buy-and-sell-stock) |
+| [0128-longest-consecutive-sequence](https://github.com/Ashu8477/LeetCode/tree/master/0128-longest-consecutive-sequence) |
 | [0136-single-number](https://github.com/Ashu8477/LeetCode/tree/master/0136-single-number) |
 | [0152-maximum-product-subarray](https://github.com/Ashu8477/LeetCode/tree/master/0152-maximum-product-subarray) |
 | [0153-find-minimum-in-rotated-sorted-array](https://github.com/Ashu8477/LeetCode/tree/master/0153-find-minimum-in-rotated-sorted-array) |
@@ -109,6 +110,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0049-group-anagrams](https://github.com/Ashu8477/LeetCode/tree/master/0049-group-anagrams) |
 | [0073-set-matrix-zeroes](https://github.com/Ashu8477/LeetCode/tree/master/0073-set-matrix-zeroes) |
 | [0076-minimum-window-substring](https://github.com/Ashu8477/LeetCode/tree/master/0076-minimum-window-substring) |
+| [0128-longest-consecutive-sequence](https://github.com/Ashu8477/LeetCode/tree/master/0128-longest-consecutive-sequence) |
 | [0169-majority-element](https://github.com/Ashu8477/LeetCode/tree/master/0169-majority-element) |
 | [0217-contains-duplicate](https://github.com/Ashu8477/LeetCode/tree/master/0217-contains-duplicate) |
 | [0525-contiguous-array](https://github.com/Ashu8477/LeetCode/tree/master/0525-contiguous-array) |
@@ -220,6 +222,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Union-Find
 |  |
 | ------- |
+| [0128-longest-consecutive-sequence](https://github.com/Ashu8477/LeetCode/tree/master/0128-longest-consecutive-sequence) |
 | [2685-count-the-number-of-complete-components](https://github.com/Ashu8477/LeetCode/tree/master/2685-count-the-number-of-complete-components) |
 ## String Matching
 |  |
