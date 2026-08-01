@@ -106,6 +106,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0072-edit-distance](https://github.com/Ashu8477/LeetCode/tree/master/0072-edit-distance) |
 | [0076-minimum-window-substring](https://github.com/Ashu8477/LeetCode/tree/master/0076-minimum-window-substring) |
 | [0079-word-search](https://github.com/Ashu8477/LeetCode/tree/master/0079-word-search) |
+| [0125-valid-palindrome](https://github.com/Ashu8477/LeetCode/tree/master/0125-valid-palindrome) |
 | [3014-minimum-number-of-pushes-to-type-word-i](https://github.com/Ashu8477/LeetCode/tree/master/3014-minimum-number-of-pushes-to-type-word-i) |
 | [3016-minimum-number-of-pushes-to-type-word-ii](https://github.com/Ashu8477/LeetCode/tree/master/3016-minimum-number-of-pushes-to-type-word-ii) |
 | [3499-maximize-active-section-with-trade-i](https://github.com/Ashu8477/LeetCode/tree/master/3499-maximize-active-section-with-trade-i) |
@@ -175,6 +176,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0042-trapping-rain-water](https://github.com/Ashu8477/LeetCode/tree/master/0042-trapping-rain-water) |
 | [0075-sort-colors](https://github.com/Ashu8477/LeetCode/tree/master/0075-sort-colors) |
 | [0088-merge-sorted-array](https://github.com/Ashu8477/LeetCode/tree/master/0088-merge-sorted-array) |
+| [0125-valid-palindrome](https://github.com/Ashu8477/LeetCode/tree/master/0125-valid-palindrome) |
 | [0143-reorder-list](https://github.com/Ashu8477/LeetCode/tree/master/0143-reorder-list) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Greedy
