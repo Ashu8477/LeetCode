@@ -47,6 +47,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1260-shift-2d-grid](https://github.com/Ashu8477/LeetCode/tree/master/1260-shift-2d-grid) |
 | [1295-find-numbers-with-even-number-of-digits](https://github.com/Ashu8477/LeetCode/tree/master/1295-find-numbers-with-even-number-of-digits) |
 | [1365-how-many-numbers-are-smaller-than-the-current-number](https://github.com/Ashu8477/LeetCode/tree/master/1365-how-many-numbers-are-smaller-than-the-current-number) |
+| [1406-stone-game-iii](https://github.com/Ashu8477/LeetCode/tree/master/1406-stone-game-iii) |
 | [1464-maximum-product-of-two-elements-in-an-array](https://github.com/Ashu8477/LeetCode/tree/master/1464-maximum-product-of-two-elements-in-an-array) |
 | [1470-shuffle-the-array](https://github.com/Ashu8477/LeetCode/tree/master/1470-shuffle-the-array) |
 | [1480-running-sum-of-1d-array](https://github.com/Ashu8477/LeetCode/tree/master/1480-running-sum-of-1d-array) |
@@ -72,6 +73,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0152-maximum-product-subarray](https://github.com/Ashu8477/LeetCode/tree/master/0152-maximum-product-subarray) |
 | [0486-predict-the-winner](https://github.com/Ashu8477/LeetCode/tree/master/0486-predict-the-winner) |
 | [0518-coin-change-ii](https://github.com/Ashu8477/LeetCode/tree/master/0518-coin-change-ii) |
+| [1406-stone-game-iii](https://github.com/Ashu8477/LeetCode/tree/master/1406-stone-game-iii) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 ## Math
 |  |
@@ -87,6 +89,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0486-predict-the-winner](https://github.com/Ashu8477/LeetCode/tree/master/0486-predict-the-winner) |
 | [0628-maximum-product-of-three-numbers](https://github.com/Ashu8477/LeetCode/tree/master/0628-maximum-product-of-three-numbers) |
 | [1295-find-numbers-with-even-number-of-digits](https://github.com/Ashu8477/LeetCode/tree/master/1295-find-numbers-with-even-number-of-digits) |
+| [1406-stone-game-iii](https://github.com/Ashu8477/LeetCode/tree/master/1406-stone-game-iii) |
 | [1512-number-of-good-pairs](https://github.com/Ashu8477/LeetCode/tree/master/1512-number-of-good-pairs) |
 | [3014-minimum-number-of-pushes-to-type-word-i](https://github.com/Ashu8477/LeetCode/tree/master/3014-minimum-number-of-pushes-to-type-word-i) |
 | [3513-number-of-unique-xor-triplets-i](https://github.com/Ashu8477/LeetCode/tree/master/3513-number-of-unique-xor-triplets-i) |
@@ -343,8 +346,17 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0486-predict-the-winner](https://github.com/Ashu8477/LeetCode/tree/master/0486-predict-the-winner) |
+| [1406-stone-game-iii](https://github.com/Ashu8477/LeetCode/tree/master/1406-stone-game-iii) |
 ## Trie
 |  |
 | ------- |
 | [0014-longest-common-prefix](https://github.com/Ashu8477/LeetCode/tree/master/0014-longest-common-prefix) |
+## Minimax
+|  |
+| ------- |
+| [1406-stone-game-iii](https://github.com/Ashu8477/LeetCode/tree/master/1406-stone-game-iii) |
+## Zero-Sum Game
+|  |
+| ------- |
+| [1406-stone-game-iii](https://github.com/Ashu8477/LeetCode/tree/master/1406-stone-game-iii) |
 <!---LeetCode Topics End-->
