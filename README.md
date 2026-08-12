@@ -57,6 +57,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1672-richest-customer-wealth](https://github.com/Ashu8477/LeetCode/tree/master/1672-richest-customer-wealth) |
 | [1920-build-array-from-permutation](https://github.com/Ashu8477/LeetCode/tree/master/1920-build-array-from-permutation) |
 | [1929-concatenation-of-array](https://github.com/Ashu8477/LeetCode/tree/master/1929-concatenation-of-array) |
+| [2958-length-of-longest-subarray-with-at-most-k-frequency](https://github.com/Ashu8477/LeetCode/tree/master/2958-length-of-longest-subarray-with-at-most-k-frequency) |
 | [2996-smallest-missing-integer-greater-than-sequential-prefix-sum](https://github.com/Ashu8477/LeetCode/tree/master/2996-smallest-missing-integer-greater-than-sequential-prefix-sum) |
 | [3501-maximize-active-section-with-trade-ii](https://github.com/Ashu8477/LeetCode/tree/master/3501-maximize-active-section-with-trade-ii) |
 | [3513-number-of-unique-xor-triplets-i](https://github.com/Ashu8477/LeetCode/tree/master/3513-number-of-unique-xor-triplets-i) |
@@ -148,6 +149,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0560-subarray-sum-equals-k](https://github.com/Ashu8477/LeetCode/tree/master/0560-subarray-sum-equals-k) |
 | [1365-how-many-numbers-are-smaller-than-the-current-number](https://github.com/Ashu8477/LeetCode/tree/master/1365-how-many-numbers-are-smaller-than-the-current-number) |
 | [1512-number-of-good-pairs](https://github.com/Ashu8477/LeetCode/tree/master/1512-number-of-good-pairs) |
+| [2958-length-of-longest-subarray-with-at-most-k-frequency](https://github.com/Ashu8477/LeetCode/tree/master/2958-length-of-longest-subarray-with-at-most-k-frequency) |
 | [2996-smallest-missing-integer-greater-than-sequential-prefix-sum](https://github.com/Ashu8477/LeetCode/tree/master/2996-smallest-missing-integer-greater-than-sequential-prefix-sum) |
 | [3016-minimum-number-of-pushes-to-type-word-ii](https://github.com/Ashu8477/LeetCode/tree/master/3016-minimum-number-of-pushes-to-type-word-ii) |
 | [3518-smallest-palindromic-rearrangement-ii](https://github.com/Ashu8477/LeetCode/tree/master/3518-smallest-palindromic-rearrangement-ii) |
@@ -173,6 +175,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0003-longest-substring-without-repeating-characters](https://github.com/Ashu8477/LeetCode/tree/master/0003-longest-substring-without-repeating-characters) |
 | [0076-minimum-window-substring](https://github.com/Ashu8477/LeetCode/tree/master/0076-minimum-window-substring) |
 | [0424-longest-repeating-character-replacement](https://github.com/Ashu8477/LeetCode/tree/master/0424-longest-repeating-character-replacement) |
+| [2958-length-of-longest-subarray-with-at-most-k-frequency](https://github.com/Ashu8477/LeetCode/tree/master/2958-length-of-longest-subarray-with-at-most-k-frequency) |
 ## Binary Search
 |  |
 | ------- |
