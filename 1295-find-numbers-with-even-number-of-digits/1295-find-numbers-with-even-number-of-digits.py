@@ -5,6 +5,7 @@ class Solution:
 
         for num in nums:
 
-            if 10<=num<=99 or 1000<=num<=9999 or num==100000:
+            if len(str(num))%2==0:
                 even_digits+=1
         return even_digits
+        
