@@ -7,12 +7,6 @@ class Solution:
             n[num]+=1
         for i in range(1,101):
             n[i]+=n[i-1]
-        ans=[]
-        for num in nums:
-            if num==0:
-                ans.append(0)
-            else:
-                ans.append(n[num-1])
-        return ans
+        return [n[num-1] if num>0 else 0 for num in nums]
 
         
