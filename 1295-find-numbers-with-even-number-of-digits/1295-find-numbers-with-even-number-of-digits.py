@@ -1,17 +1,15 @@
 class Solution:
     def findNumbers(self, nums: List[int]) -> int:
-        count=1
-        number=0
-        even_number=0
-
+        n=len(nums)
+        count=0
+        even_digit=0
         for num in nums:
-            number=num//10
-            while number>0:
-                number//=10
+            while num>0:
+                last_digit=num%10
                 count+=1
+                num=num//10
             if count%2==0:
-                even_number+=1
-            count=1
-        return even_number
-            
-        
+                even_digit+=1
+            count=0
+
+        return even_digit
