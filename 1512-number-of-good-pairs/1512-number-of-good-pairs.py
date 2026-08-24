@@ -1,11 +1,11 @@
 class Solution:
     def numIdenticalPairs(self, nums: List[int]) -> int:
         n=len(nums)
-        digit_count=[0]*101
+        count={}
         for num in nums:
-            digit_count[num]+=1
+            count[num]=count.get(num,0)+1
         ans=0
-        for num in digit_count:
+        for num in count.values():
             ans+=num*(num-1)//2 
         return ans
         
