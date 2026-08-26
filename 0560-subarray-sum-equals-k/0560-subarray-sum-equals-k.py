@@ -1,12 +1,12 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        hash={0:1}
-        prefix_sum=0
         count=0
-        for i in nums:
-            prefix_sum+=i
-            if prefix_sum-k in hash:
-                count+=hash[prefix_sum-k]
-            hash[prefix_sum]=hash.get(prefix_sum,0)+1
+        curr=0
+        freq={0:1}
+
+        for num in nums:
+            curr+=num
+            if curr-k in freq:
+                count+=freq[curr-k]
+            freq[curr]=freq.get(curr,0)+1
         return count
-        
