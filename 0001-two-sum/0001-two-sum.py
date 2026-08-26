@@ -1,15 +1,14 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        count={}
+       
 
-        n=len(nums)
-        hashMap={}
 
-
-        for i in range(n):
+        for i in range(len(nums)):
             value=target-nums[i]
-            if value in hashMap:
-                return hashMap[value],i
-            hashMap[nums[i]]=i
-
+            if value not in count:
+                count[nums[i]]=i
+            else:
+                return i,count[value]
 
         
