@@ -8,5 +8,4 @@ class Solution:
                 while num + count in s:
                     count+=1
                 maxi = max(count, maxi)
-
         return maxi
