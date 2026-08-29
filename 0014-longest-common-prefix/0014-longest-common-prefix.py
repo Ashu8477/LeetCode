@@ -1,13 +1,11 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        if not strs:
-            return ""
-        prefix=strs[0]
+
+        pref=strs[0]
         for word in strs[1:]:
-            while word[:len(prefix)]!=prefix:
-                prefix=prefix[:-1]
-
-                if prefix== '':
+            while word[:len(pref)]!=pref:
+                pref=pref[:-1]
+                if pref=='':
                     return ''
-        return prefix
-
+        return pref
+        
