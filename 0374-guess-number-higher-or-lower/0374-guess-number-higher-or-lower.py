@@ -11,9 +11,10 @@ class Solution:
         right=n
         while left<right:
             mid=(left+right)//2
-            if guess(mid)==-1:
+            result=guess(mid)
+            if result==-1:
                 right=mid-1
-            elif guess(mid)==1:
+            elif result==1:
                 left=mid+1
             else:
                 return mid
