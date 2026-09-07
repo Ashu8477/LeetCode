@@ -10,9 +10,7 @@ class Solution:
 
             hours=0
             for banana in piles:
-                hours+=(banana+(k-1))//k
-
-
+                hours+=(banana+k-1)//k
             if hours<=h:
                 right=k-1
             else:
