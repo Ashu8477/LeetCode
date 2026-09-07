@@ -13,10 +13,10 @@ class Solution:
 
             for weight in weights:
 
-                summ+=weight
-                if summ>k:
-                    summ=weight
+                if summ+weight>k:
                     day+=1
+                    summ=0
+                summ+=weight
 
             if day<=days:
                 right=k-1
