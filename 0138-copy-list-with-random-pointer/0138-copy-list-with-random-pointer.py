@@ -27,7 +27,7 @@ class Solution:
             curr=curr.next.next
         
         curr=head
-        copy_curr=head.next
+        copy_curr=curr.next
         while curr:
 
             copy=curr.next
