@@ -11,14 +11,8 @@ class Solution:
         head=dummy
 
         while l1 or l2 or carry:
-            if l1:
-                x=l1.val
-            else:
-                x=0
-            if l2:
-                y=l2.val
-            else:
-                y=0
+            x=l1.val if l1 else 0
+            y=l2.val if l2 else 0
 
             add=x+y+carry 
             carry=add//10
