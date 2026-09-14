@@ -10,42 +10,26 @@ class Solution:
         dummy=ListNode(0)
         head=dummy
 
-        while l1 and l2:
-            add=l1.val+l2.val+carry
-            
-            if add>9:
-                carry=1
-                add=add%10
+        while l1 or l2 or carry:
+            if l1:
+                x=l1.val
             else:
-                carry=0
-            dummy.next=ListNode(add)
-            dummy=dummy.next
-            l1=l1.next
-            l2=l2.next
-        while l1:
-            add=l1.val+carry
-            
-            if add>9:
-                carry=1
-                add=add%10
+                x=0
+            if l2:
+                y=l2.val
             else:
-                carry=0
-            dummy.next=ListNode(add)
+                y=0
+
+            add=x+y+carry 
+            carry=add//10
+            digit=add%10
+            dummy.next=ListNode(digit)
             dummy=dummy.next
-            l1=l1.next
-        while l2:
-            add=l2.val+carry
-            
-            if add>9:
-                carry=1
-                add=add%10
-            else:
-                carry=0
-            dummy.next=ListNode(add)
-            dummy=dummy.next
-            l2=l2.next
-        if carry==1:
-            dummy.next=ListNode(carry) 
+            if l1:
+                l1=l1.next
+            if l2:
+                l2=l2.next
+
 
         return head.next
 
