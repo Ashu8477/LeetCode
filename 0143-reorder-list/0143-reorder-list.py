@@ -8,9 +8,8 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        if not head or not head.next:
-            return
-        slow=fast=head
+        slow=head
+        fast=head
         while fast and fast.next:
             slow=slow.next
             fast=fast.next.next
@@ -18,22 +17,24 @@ class Solution:
         slow.next=None
         prev=None
         while curr:
-
-            tempo=curr.next
+            next_node=curr.next
             curr.next=prev
             prev=curr
-            curr=tempo
+            curr=next_node
 
-        first,second=head,prev
+        first=head
+        second=prev
+
         while second:
-            temp1=first.next
-            temp2=second.next
+            next1=first.next
+            next2=second.next
             first.next=second
-            second.next=temp1
+            second.next=next1
+            first=next1
+            second=next2
 
-            first=temp1
-            second=temp2
 
 
+        
 
         
