@@ -8,10 +8,4 @@ class Solution:
                 mp[stack.pop()]=num
 
             stack.append(num)
-        stack=[]
-        for num in nums1:
-            if num in mp:
-                stack.append(mp[num])
-            else:
-                stack.append(-1)
-        return stack
+        return [mp.get(num,-1) for num in nums1]
