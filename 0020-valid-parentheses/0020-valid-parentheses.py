@@ -4,13 +4,9 @@ class Solution:
         stack=[]
         for ch in s:
             if ch in mp:
-                if stack:
-                    if stack[-1]==mp[ch]:
-                        stack.pop()
-                    else:
-                        return False
-                else:
+                if not stack or stack[-1]!=mp[ch]:
                     return False
+                stack.pop()
             else:
                 stack.append(ch)
         return not stack
