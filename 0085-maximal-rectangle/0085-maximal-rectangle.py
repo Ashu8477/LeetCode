@@ -1,24 +1,24 @@
 class Solution:
     def maximalRectangle(self, matrix: list[list[str]]) -> int:
-        col=len(matrix[0])
-        ans=0
-        heights=[0]*col
-        max_area=0
-        for row in matrix:
-            for i in range(col):
-                if row[i]=='1':
-                    heights[i]+=1
+        maxi=0
+        n=len(matrix[0])
+        stack=[0]*n
+        for num in matrix: 
+            for i in range(n):
+                if num[i]=='1':
+                    stack[i]+=1
                 else:
-                    heights[i]=0
-            heights.append(0)
-            stack=[]
-            for i,h in enumerate(heights):
-                while stack and heights[stack[-1]]>h:
-                    height=heights[stack.pop()]
-                    width=i if not stack else i-stack[-1]-1
-                    max_area=max(max_area,height*width)
-                stack.append(i)
-        return max_area
+                    stack[i]=0
+            stack2=[]
+            height=stack+[0]
+            for i,row in enumerate(height):
+                while stack2 and height[stack2[-1]]>row:
+                    idx=stack2.pop() 
+                    width=i if not stack2 else i-stack2[-1]-1
+                    maxi=max(maxi,height[idx]*width)
+                stack2.append(i)
+            
+        return maxi
 
 
         
