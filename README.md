@@ -133,6 +133,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0066-plus-one](https://github.com/Ashu8477/LeetCode/tree/master/0066-plus-one) |
 | [0070-climbing-stairs](https://github.com/Ashu8477/LeetCode/tree/master/0070-climbing-stairs) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/Ashu8477/LeetCode/tree/master/0150-evaluate-reverse-polish-notation) |
+| [0231-power-of-two](https://github.com/Ashu8477/LeetCode/tree/master/0231-power-of-two) |
 | [0486-predict-the-winner](https://github.com/Ashu8477/LeetCode/tree/master/0486-predict-the-winner) |
 | [0509-fibonacci-number](https://github.com/Ashu8477/LeetCode/tree/master/0509-fibonacci-number) |
 | [0628-maximum-product-of-three-numbers](https://github.com/Ashu8477/LeetCode/tree/master/0628-maximum-product-of-three-numbers) |
@@ -255,6 +256,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0143-reorder-list](https://github.com/Ashu8477/LeetCode/tree/master/0143-reorder-list) |
 | [0203-remove-linked-list-elements](https://github.com/Ashu8477/LeetCode/tree/master/0203-remove-linked-list-elements) |
 | [0206-reverse-linked-list](https://github.com/Ashu8477/LeetCode/tree/master/0206-reverse-linked-list) |
+| [0231-power-of-two](https://github.com/Ashu8477/LeetCode/tree/master/0231-power-of-two) |
 | [0234-palindrome-linked-list](https://github.com/Ashu8477/LeetCode/tree/master/0234-palindrome-linked-list) |
 | [0394-decode-string](https://github.com/Ashu8477/LeetCode/tree/master/0394-decode-string) |
 | [0486-predict-the-winner](https://github.com/Ashu8477/LeetCode/tree/master/0486-predict-the-winner) |
@@ -340,6 +342,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0078-subsets](https://github.com/Ashu8477/LeetCode/tree/master/0078-subsets) |
 | [0136-single-number](https://github.com/Ashu8477/LeetCode/tree/master/0136-single-number) |
+| [0231-power-of-two](https://github.com/Ashu8477/LeetCode/tree/master/0231-power-of-two) |
 | [3513-number-of-unique-xor-triplets-i](https://github.com/Ashu8477/LeetCode/tree/master/3513-number-of-unique-xor-triplets-i) |
 | [3534-path-existence-queries-in-a-graph-ii](https://github.com/Ashu8477/LeetCode/tree/master/3534-path-existence-queries-in-a-graph-ii) |
 | [3702-longest-subsequence-with-non-zero-bitwise-xor](https://github.com/Ashu8477/LeetCode/tree/master/3702-longest-subsequence-with-non-zero-bitwise-xor) |
