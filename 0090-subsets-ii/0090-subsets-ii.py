@@ -2,22 +2,19 @@ class Solution:
     def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
         ans=[]
         nums.sort()
-        def solve(path,used,start):
+        def solve(path,start):
             ans.append(path[:])
 
             for i in range(start,len(nums)):
-                if used[i]:
-                    continue
-                if i>0 and nums[i]==nums[i-1] and not used[i-1]:
+
+                if i>start and nums[i]==nums[i-1]:
                     continue
                 
-                used[i]=True
                 path.append(nums[i])
-                solve(path,used,i+1)
-                used[i]=False
+                solve(path,i+1)
                 path.pop()
 
 
-        solve([],[False]*len(nums),0)
+        solve([],0)
         return ans
         
