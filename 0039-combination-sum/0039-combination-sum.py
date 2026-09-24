@@ -3,18 +3,18 @@ class Solution:
 
         ans=[]
 
-        def solve(path,start):
-            if sum(path)==target:
+        def solve(path,start,total):
+            if total==target:
                 ans.append(path[:])
                 return
-            if sum(path)>target:
+            if total>target:
                 return
             
             for i in range(start,len(candidates)):
                 path.append(candidates[i])
-                solve(path,i)
+                solve(path,i,total+candidates[i])
                 path.pop()
-        solve([],0)
+        solve([],0,0)
         return ans
 
 
