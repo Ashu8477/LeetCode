@@ -1,14 +1,14 @@
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = []
+    def subsets(self, nums: list[int]) -> list[list[int]]:
+        ans=[]
+        n=len(nums)
+        def solve(path,rem):
+            ans.append(path[:])
 
-        def backtrack(start, path):
-            res.append(path[:])
-            
-            for i in range(start, len(nums)):
-                path.append(nums[i])
-                backtrack(i + 1, path)
-                path.pop()
-
-        backtrack(0, [])
-        return res
+            for i in range(len(rem)):
+                if len(path)==len(nums):
+                    return
+                solve(path + [rem[i]],rem[i+1:])
+        solve([],nums)
+        return ans
+        
