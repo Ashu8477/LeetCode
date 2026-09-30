@@ -394,6 +394,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Tree
 |  |
 | ------- |
+| [0100-same-tree](https://github.com/Ashu8477/LeetCode/tree/master/0100-same-tree) |
 | [0104-maximum-depth-of-binary-tree](https://github.com/Ashu8477/LeetCode/tree/master/0104-maximum-depth-of-binary-tree) |
 | [0543-diameter-of-binary-tree](https://github.com/Ashu8477/LeetCode/tree/master/0543-diameter-of-binary-tree) |
 | [0572-subtree-of-another-tree](https://github.com/Ashu8477/LeetCode/tree/master/0572-subtree-of-another-tree) |
@@ -403,6 +404,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0079-word-search](https://github.com/Ashu8477/LeetCode/tree/master/0079-word-search) |
+| [0100-same-tree](https://github.com/Ashu8477/LeetCode/tree/master/0100-same-tree) |
 | [0104-maximum-depth-of-binary-tree](https://github.com/Ashu8477/LeetCode/tree/master/0104-maximum-depth-of-binary-tree) |
 | [0543-diameter-of-binary-tree](https://github.com/Ashu8477/LeetCode/tree/master/0543-diameter-of-binary-tree) |
 | [0572-subtree-of-another-tree](https://github.com/Ashu8477/LeetCode/tree/master/0572-subtree-of-another-tree) |
@@ -413,6 +415,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Breadth-First Search
 |  |
 | ------- |
+| [0100-same-tree](https://github.com/Ashu8477/LeetCode/tree/master/0100-same-tree) |
 | [0104-maximum-depth-of-binary-tree](https://github.com/Ashu8477/LeetCode/tree/master/0104-maximum-depth-of-binary-tree) |
 | [1096-brace-expansion-ii](https://github.com/Ashu8477/LeetCode/tree/master/1096-brace-expansion-ii) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/Ashu8477/LeetCode/tree/master/1448-count-good-nodes-in-binary-tree) |
@@ -421,6 +424,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Binary Tree
 |  |
 | ------- |
+| [0100-same-tree](https://github.com/Ashu8477/LeetCode/tree/master/0100-same-tree) |
 | [0104-maximum-depth-of-binary-tree](https://github.com/Ashu8477/LeetCode/tree/master/0104-maximum-depth-of-binary-tree) |
 | [0543-diameter-of-binary-tree](https://github.com/Ashu8477/LeetCode/tree/master/0543-diameter-of-binary-tree) |
 | [0572-subtree-of-another-tree](https://github.com/Ashu8477/LeetCode/tree/master/0572-subtree-of-another-tree) |
