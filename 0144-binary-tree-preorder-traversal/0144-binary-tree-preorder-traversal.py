@@ -14,8 +14,8 @@ class Solution:
                 return
             
             ans.append(node.val)
-            l=solve(node.left)
-            r=solve(node.right)
+            solve(node.left)
+            solve(node.right)
 
         solve(root)
         return ans
