@@ -10,10 +10,6 @@ class Solution:
         def solve(node):
             if node is None:
                 return
-            
-            if node.left is None and node.right is None:
-                ans.append(node.val)
-                return
             solve(node.left)
             solve(node.right)
             ans.append(node.val)
